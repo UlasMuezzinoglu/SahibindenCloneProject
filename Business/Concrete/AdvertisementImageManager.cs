@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
@@ -25,6 +26,13 @@ namespace Business.Concrete
 
         public IResult Add(AdvertisementImage advertisementImage, IFormFile file)
         {
+            IResult result = BusinessRules.Run(IsOverflowCarImageCount(advertisementImage.AdvertisementId));
+            
+            if (result != null)
+            {
+                return new ErrorResult(result.Message);
+            }
+
             var imageResult = _fileHelper.Upload(file);
             if (!imageResult.Success)
             {
@@ -89,6 +97,18 @@ namespace Business.Concrete
             _advertisementDal.Update(advertisementImage);
 
             return new SuccessResult("Resim Başarılı İle Güncellendi");
+        }
+        public IResult IsOverflowCarImageCount(int advertisementId)
+        {
+            var result = _advertisementDal.GetAll(im => im.AdvertisementId == advertisementId);
+
+            if (result.Count >= 20)
+            {
+                return new ErrorResult("Resim Sayısı 20 yi aştı...");
+            }
+
+            return new SuccessResult();
+
         }
     }
 }

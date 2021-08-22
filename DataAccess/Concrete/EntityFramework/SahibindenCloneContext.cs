@@ -17,6 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
         }
 
         public DbSet<City> Cities { get; set; }
+        public DbSet<AdvertisementImage> AdvertisementImages { get; set; }
         public DbSet<DeedType> DeedTypes { get; set; }
         public DbSet<FromWho> FromWhos { get; set; }
         public DbSet<HeatingType> HeatingTypes { get; set; }

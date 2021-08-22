@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.concrete;
 using Business.Concrete;
 using Castle.DynamicProxy;
+using Core.Utilities.Helpers;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstact;
@@ -39,7 +40,10 @@ namespace Business.DependencyResolvers.Autofac
             //For House
             builder.RegisterType<HouseManager>().As<IHouseService>();
             builder.RegisterType<EfHouseDal>().As<IHouseDal>();
-
+            //For AdvertisementImage
+            builder.RegisterType<AdvertisementImageManager>().As<IAdvertisementImageService>();
+            builder.RegisterType<EfAdvertisementImageDal>().As<IAdvertisementImageDal>();
+            builder.RegisterType<FileHelper>().As<IFileHelper>().SingleInstance();
 
 
 

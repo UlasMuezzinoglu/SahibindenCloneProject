@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constraints;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -20,12 +22,16 @@ namespace Business.Concrete
             _heatingTypeDal = heatingTypeDal;
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHeatingTypeService.Get")]
         public IResult Add(HeatingType heatingType)
         {
             _heatingTypeDal.Add(heatingType);
             return new SuccessResult(Messages.HeatingTypeAdded);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHeatingTypeService.Get")]
         public IResult Delete(HeatingType heatingType)
         {
             try
@@ -40,11 +46,14 @@ namespace Business.Concrete
             }
         }
 
+        [CacheAspect]
         public IDataResult<List<HeatingType>> GetAll()
         {
             return new SuccessDataResult<List<HeatingType>>(_heatingTypeDal.GetAll(), Messages.HeatingTypesListed);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHeatingTypeService.Get")]
         public IResult Update(HeatingType heatingType)
         {
             try

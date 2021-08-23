@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constraints;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -20,12 +22,16 @@ namespace Business.Concrete
             _houseTypeDal = houseTypeDal;
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHouseTypeService.Get")]
         public IResult Add(HouseType houseType)
         {
             _houseTypeDal.Add(houseType);
             return new SuccessResult(Messages.HouseTypeAdded);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHouseTypeService.Get")]
         public IResult Delete(HouseType houseType)
         {
             try
@@ -40,11 +46,14 @@ namespace Business.Concrete
             }
         }
 
+        [CacheAspect]
         public IDataResult<List<HouseType>> GetAll()
         {
             return new SuccessDataResult<List<HouseType>>(_houseTypeDal.GetAll(),Messages.HouseTypesListed);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IHouseTypeService.Get")]
         public IResult Update(HouseType houseType)
         {
             try

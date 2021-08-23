@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constraints;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -18,12 +20,16 @@ namespace Business.concrete
             _deedTypeDal = deedTypeDal;
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IDeedTypeService.Get")]
         public IResult Add(DeedType deedType)
         {
             _deedTypeDal.Add(deedType);
             return new SuccessResult(Messages.DeedTypeAdded);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IDeedTypeService.Get")]
         public IResult Delete(DeedType deedType)
         {
             try
@@ -38,12 +44,15 @@ namespace Business.concrete
             }
         }
 
+        [CacheAspect]
         public IDataResult<List<DeedType>> GetAll()
         {
             return new SuccessDataResult<List<DeedType>>(_deedTypeDal.GetAll(), Messages.DeedTypesListed);
 
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IDeedTypeService.Get")]
         public IResult Update(DeedType deedType)
         {
             try

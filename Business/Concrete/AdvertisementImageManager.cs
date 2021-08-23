@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constraints;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
@@ -25,6 +28,8 @@ namespace Business.Concrete
             _fileHelper = fileHelper;
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IAdvertisementImageService.Get")]
         public IResult Add(AdvertisementImage advertisementImage, IFormFile file)
         {
             IResult result = BusinessRules.Run(IsOverflowCarImageCount(advertisementImage.AdvertisementId));
@@ -46,6 +51,8 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IAdvertisementImageService.Get")]
         public IResult Delete(AdvertisementImage advertisementImage)
         {
             try
@@ -66,11 +73,14 @@ namespace Business.Concrete
             }
         }
 
+        [CacheAspect]
         public IDataResult<List<AdvertisementImage>> GetAll()
         {
             return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(), Messages.AdvertisementImagesListed);
         }
 
+        [CacheAspect]
+        [PerformanceAspect(7)] // bu metotun çalışması 7 saniyeyi geçerce beni uyar
         public IDataResult<List<AdvertisementImage>> GetByAdvertisementId(int advertisementId)
         {
             var result = BusinessRules.Run(ShowDefaultImage(advertisementId));
@@ -82,11 +92,14 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect]
         public IDataResult<AdvertisementImage> GetById(int id)
         {
             return new SuccessDataResult<AdvertisementImage>(_advertisementDal.Get(c => c.Id == id), Messages.AdvertisementImagesListed);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IAdvertisementImageService.Get")]
         public IResult Update(AdvertisementImage advertisementImage, IFormFile file)
         {
             var imageDelete = _advertisementDal.Get(c => c.Id == advertisementImage.Id);

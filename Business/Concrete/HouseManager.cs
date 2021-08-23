@@ -22,6 +22,7 @@ namespace Business.Concrete
 
         public IResult Add(House house)
         {
+            house.CreatedTime = DateTime.Now;
             _houseDal.Add(house);
             return new SuccessResult(Messages.HouseAdded);
         }

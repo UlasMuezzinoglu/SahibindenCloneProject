@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constraints;
+using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -20,12 +22,16 @@ namespace Business.Concrete
             _fromWhoDal = fromWhoDal;
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IFromWhoService.Get")]
         public IResult Add(FromWho fromWho)
         {
             _fromWhoDal.Add(fromWho);
             return new SuccessResult(Messages.FromWhoAdded);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IFromWhoService.Get")]
         public IResult Delete(FromWho fromWho)
         {
             try
@@ -40,11 +46,14 @@ namespace Business.Concrete
             }
         }
 
+        [CacheAspect]
         public IDataResult<List<FromWho>> GetAll()
         {
             return new SuccessDataResult<List<FromWho>>(_fromWhoDal.GetAll(),Messages.FromWhosListed);
         }
 
+        [SecuredOperation("admin")]
+        [CacheRemoveAspect("IFromWhoService.Get")]
         public IResult Update(FromWho fromWho)
         {
             try

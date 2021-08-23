@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
 using Core.Utilities.Results;
@@ -41,7 +42,7 @@ namespace Business.Concrete
             advertisementImage.ImagePath = imageResult.Message;
             advertisementImage.Date = DateTime.Now;
             _advertisementDal.Add(advertisementImage);
-            return new SuccessResult("İlan Resmi Başarı İle Eklendi");
+            return new SuccessResult(Messages.AdvertisementImageAdded);
 
         }
 
@@ -52,22 +53,22 @@ namespace Business.Concrete
                 var imageDelete = _advertisementDal.Get(c => c.Id == advertisementImage.Id);
                 if (imageDelete == null)
                 {
-                    return new ErrorResult("Resim Bulunamadı");
+                    return new ErrorResult(Messages.AdvertisementImageNotExist);
                 }
                 _advertisementDal.Delete(advertisementImage);
 
-                return new SuccessResult("Resim Başarı İle Silindi");
+                return new SuccessResult(Messages.AdvertisementImageDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Resim Silinemedi");
+                return new ErrorResult(Messages.AdvertisementImageCantDeleded);
             }
         }
 
         public IDataResult<List<AdvertisementImage>> GetAll()
         {
-            return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(), "Bütün Resimler Listelendi");
+            return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(), Messages.AdvertisementImagesListed);
         }
 
         public IDataResult<List<AdvertisementImage>> GetByAdvertisementId(int advertisementId)
@@ -77,13 +78,13 @@ namespace Business.Concrete
             {
                 return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(c => c.AdvertisementId == advertisementId));
             }
-            return new ErrorDataResult<List<AdvertisementImage>>("Hata");
+            return new ErrorDataResult<List<AdvertisementImage>>(Messages.AdvertisementImageError);
 
         }
 
         public IDataResult<AdvertisementImage> GetById(int id)
         {
-            return new SuccessDataResult<AdvertisementImage>(_advertisementDal.Get(c => c.Id == id), "İlan Resimleri Listelendi");
+            return new SuccessDataResult<AdvertisementImage>(_advertisementDal.Get(c => c.Id == id), Messages.AdvertisementImagesListed);
         }
 
         public IResult Update(AdvertisementImage advertisementImage, IFormFile file)
@@ -91,7 +92,7 @@ namespace Business.Concrete
             var imageDelete = _advertisementDal.Get(c => c.Id == advertisementImage.Id);
             if (imageDelete == null)
             {
-                return new ErrorResult("Bulunamadı");
+                return new ErrorResult(Messages.AdvertisementImageError);
             }
             var updatedFile = _fileHelper.Update(file, imageDelete.ImagePath);
             if (!updatedFile.Success)
@@ -101,7 +102,7 @@ namespace Business.Concrete
             advertisementImage.ImagePath = updatedFile.Message;
             _advertisementDal.Update(advertisementImage);
 
-            return new SuccessResult("Resim Başarılı İle Güncellendi");
+            return new SuccessResult(Messages.AdvertisementImageUpdated);
         }
         public IResult IsOverflowCarImageCount(int advertisementId)
         {
@@ -109,7 +110,7 @@ namespace Business.Concrete
 
             if (result.Count >= 20)
             {
-                return new ErrorResult("Resim Sayısı 20 yi aştı...");
+                return new ErrorResult(Messages.AdvertisementImageCountOverflowError);
             }
 
             return new SuccessResult();
@@ -133,7 +134,7 @@ namespace Business.Concrete
             catch (Exception)
             {
 
-                return new ErrorDataResult<List<AdvertisementImage>>("Hata");
+                return new ErrorDataResult<List<AdvertisementImage>>(Messages.AdvertisementImageError);
             }
             return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(c => c.AdvertisementId == advertisementId).ToList());
 

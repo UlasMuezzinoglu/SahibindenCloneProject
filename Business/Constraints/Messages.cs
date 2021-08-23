@@ -56,5 +56,15 @@ namespace Business.Constraints
         public static string HousesListedByUserId = "Emlak İlanı Kullanıcıya Göre Başarı ile Listelendi";
         public static string HouseUpdated = "Emlak İlanı Başarı ile Güncellendi";
         public static string HouseCantUpdated = "Emlak İlanı Güncellenemedi... Böyle Birşey Artık Olmayabilir";
+        // AdvertisementImage Manager Messages
+        public static string AdvertisementImageAdded = "İlan Resimi Tipi Başarı ile Eklendi";
+        public static string AdvertisementImageNotExist = "İlan Resimi Mevcut Değil";
+        public static string AdvertisementImageError = "Hata !";
+        public static string AdvertisementImageCountOverflowError = "Resim Sayısı 20 yi aştı...";
+        public static string AdvertisementImageDeleted = "İlan Resimi Başarı ile Silindi";
+        public static string AdvertisementImageCantDeleded = "İlan Resimi Silinemedi... Böyle Birşey Artık Olmayabilir.";
+        public static string AdvertisementImagesListed = "İlan Resimleri Başarı ile Listelendi";
+        public static string AdvertisementImageUpdated = "İlan Resimi Başarı ile Güncellendi";
+        public static string AdvertisementImageCantUpdated = "İlan Resimi Güncellenemedi... Böyle Birşey Artık Olmayabilir";
     }
 }

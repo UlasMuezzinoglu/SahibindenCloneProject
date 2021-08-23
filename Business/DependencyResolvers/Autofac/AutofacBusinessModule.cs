@@ -37,9 +37,13 @@ namespace Business.DependencyResolvers.Autofac
             //For HouseType
             builder.RegisterType<HouseTypeManager>().As<IHouseTypeService>();
             builder.RegisterType<EfHouseTypeDal>().As<IHouseTypeDal>();
-            //For House
-            builder.RegisterType<HouseManager>().As<IHouseService>();
-            builder.RegisterType<EfHouseDal>().As<IHouseDal>();
+            //For HomeType
+            builder.RegisterType<HomeTypeManager>().As<IHomeTypeService>();
+            builder.RegisterType<EfHomeTypeDal>().As<IHomeTypeDal>();
+            //For HouseAdvertisement
+            builder.RegisterType<HouseAdvertisementManager>().As<IHouseAdvertisementService>();
+            builder.RegisterType<EfHouseAdvertisementDal>().As<IHouseAdvertisementDal>();
+
             //For AdvertisementImage
             builder.RegisterType<AdvertisementImageManager>().As<IAdvertisementImageService>();
             builder.RegisterType<EfAdvertisementImageDal>().As<IAdvertisementImageDal>();

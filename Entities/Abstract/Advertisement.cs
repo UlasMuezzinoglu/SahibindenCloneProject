@@ -10,5 +10,8 @@ namespace Entities.concrete
     {
         public int Id { get; set; }
         public DateTime CreatedTime { get; set; }
+        public decimal Price { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
     }
 }

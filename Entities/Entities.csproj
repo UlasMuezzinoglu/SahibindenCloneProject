@@ -8,4 +8,9 @@
     <ProjectReference Include="..\Core\Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\Estate\Land\" />
+    <Folder Include="Concrete\Estate\Build\" />
+  </ItemGroup>
+
 </Project>

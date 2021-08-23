@@ -1,28 +1,22 @@
-﻿using Core.Entities;
-using Entities.concrete;
+﻿using Entities.concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.DTOs
+namespace Entities.Concrete.Estate
 {
-    public class HouseAdvertisementDetailDto :Advertisement,IDto
+    public class House : Advertisement
     {
+        public int UserId { get; set; } // ilan sahibi kim ?
+        public int CityId { get; set; } // şehir id // tablo aç unutma
+        public int HeatingTypeId { get; set; } // ısıtma tipi merkezi mi falan // tablo aç unutma
+        public int DeedStatusId { get; set; } // tapu durumu id // tablo aç unutma
+        public int FromWhoId { get; set; } // kimden id // tablo aç unutma
+        public int HouseTypeId { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
+        public int HomeTypeId { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
 
-
-        public string UserFirstName { get; set; } // ilan sahibi kim ?
-        public string UserLastName { get; set; } // ilan sahibi kim ?
-
-        public string CityName { get; set; } // şehir id // tablo aç unutma
-        public string HeatingTypeName { get; set; } // ısıtma tipi merkezi mi falan // tablo aç unutma
-        public string DeedStatusName { get; set; } // tapu durumu id // tablo aç unutma
-        public string FromWhoName { get; set; } // kimden id // tablo aç unutma
-        public string HouseTypeName { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
-        public string HomeTypeName { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
-
-        public string ImagePath { get; set; }
         public int GrossSquareMeter { get; set; } // brüt metrekare
         public int NetSquareMeter { get; set; } // net metrekare
         public string NumberOfRooms { get; set; } // oda sayısı
@@ -37,7 +31,7 @@ namespace Entities.DTOs
         public bool AvaiableForCredit { get; set; } //krediye uygun mu
 
         public bool IsSwapable { get; set; } // takasa açık mı ? 
-                                             
+                                             //
 
         //
         // cephe
@@ -110,6 +104,7 @@ namespace Entities.DTOs
         public bool CityCenter { get; set; }
         public bool FiremanStation { get; set; }
         //
+
 
     }
 }

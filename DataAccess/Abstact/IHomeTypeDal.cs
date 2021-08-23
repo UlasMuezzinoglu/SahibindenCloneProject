@@ -1,6 +1,5 @@
 ﻿using Core.DataAccess;
-using Entities.Concrete;
-using Entities.DTOs;
+using Entities.Concrete.Estate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstact
 {
-    public interface IHouseDal : IEntityRepository<House>
+    public interface IHomeTypeDal : IEntityRepository<HomeType>
     {
-        List<HouseAdvertisementDetailDto> GetHouseAdvertisementDetails();
+
     }
 }

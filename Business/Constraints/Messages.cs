@@ -68,5 +68,16 @@ namespace Business.Constraints
         public static string AdvertisementImageUpdated = "İlan Resimi Başarı ile Güncellendi";
         public static string AdvertisementImageCantUpdated = "İlan Resimi Güncellenemedi... Böyle Birşey Artık Olmayabilir";
 
+        // for HomeType Manager Messages
+        public static string HomeTypeAdded = "Yapı Tipi Eklendi";
+        public static string HomeTypesListed = "Yapı Tipleri Getirildi";
+        // for HouseAdvertisement Manager Messages
+        public static string HouseAdvertisementAdded = "Konut İlanı Başarı ile Eklendi";
+        public static string HouseAdvertisementDeleted = "Konut İlanı Başarı ile Silindi";
+        public static string HouseAdvertisementCantDeledet = "Konut İlanı Silinemedi... Böyle Birşey Artık Olmayabilir.";
+        public static string HouseAdvertisementsListed = "Konut İlanları Başarı ile Listelendi";
+        public static string HouseAdvertisementListed = "Konut İlanı Başarı ile Listelendi";
+        public static string HouseAdvertisementUpdated = "Konut İlanları Başarı ile Güncellendi";
+        public static string HouseAdvertisementCantUpdated = "Güncellenemedi... Böyle Birşey Artık Olmayabilir.";
     }
 }

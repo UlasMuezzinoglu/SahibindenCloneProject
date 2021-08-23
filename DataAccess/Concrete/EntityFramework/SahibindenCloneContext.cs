@@ -1,5 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.Concrete.Estate;
+using Entities.Concrete.Estate.Home;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -22,7 +24,9 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<FromWho> FromWhos { get; set; }
         public DbSet<HeatingType> HeatingTypes { get; set; }
         public DbSet<HouseType> HouseTypes { get; set; }
-        public DbSet<House> Houses { get; set; }
+        public DbSet<HomeType> HomeTypes { get; set; }
+        public DbSet<HouseAdvertisement> Houses { get; set; }
+
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
+using Entities.Concrete.Estate.Home;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,18 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class HousesController : ControllerBase
+    public class HouseAdvertisementsController : ControllerBase
     {
-        IHouseService _houseService;
+        IHouseAdvertisementService _houseAdvertisementService;
 
-        public HousesController(IHouseService houseService)
+        public HouseAdvertisementsController(IHouseAdvertisementService houseAdvertisementService)
         {
-            this._houseService = houseService;
+            _houseAdvertisementService = houseAdvertisementService;
         }
         [HttpGet("getall")]
         public IActionResult Get()
         {
-            var result = _houseService.GetAll();
+            var result = _houseAdvertisementService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -33,10 +33,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
             //return Unauthorized(result);
         }
-        [HttpGet("getallwithdto")]
+        [HttpGet("getalldetailswithdto")]
         public IActionResult GetWithDto()
         {
-            var result = _houseService.GetHouseAdvertisementDetailDto();
+            var result = _houseAdvertisementService.GetHouseAdvertisementDetailDto();
             if (result.Success)
             {
                 return Ok(result);
@@ -47,10 +47,11 @@ namespace WebAPI.Controllers
             return BadRequest(result);
             //return Unauthorized(result);
         }
+
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
-            var result = _houseService.GetById(id);
+            var result = _houseAdvertisementService.GetById(id);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,7 +65,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyuserid")]
         public IActionResult GetByUserId(int userId)
         {
-            var result = _houseService.GetByUserId(userId);
+            var result = _houseAdvertisementService.GetByUserId(userId);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,9 +77,9 @@ namespace WebAPI.Controllers
             //return Unauthorized(result);
         }
         [HttpPost("add")]
-        public IActionResult Add(House house)
+        public IActionResult Add(HouseAdvertisement houseAdvertisement)
         {
-            var result = _houseService.Add(house);
+            var result = _houseAdvertisementService.Add(houseAdvertisement);
 
             if (result.Success)
             {
@@ -89,9 +90,9 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("updatehouse")]
-        public IActionResult Update(House house)
+        public IActionResult Update(HouseAdvertisement houseAdvertisement)
         {
-            var result = _houseService.Update(house);
+            var result = _houseAdvertisementService.Update(houseAdvertisement);
             if (result.Success)
             {
                 return Ok(result);
@@ -99,9 +100,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("deletehouse")]
-        public IActionResult Delete(House house)
+        public IActionResult Delete(HouseAdvertisement houseAdvertisement)
         {
-            var result = _houseService.Delete(house);
+            var result = _houseAdvertisementService.Delete(houseAdvertisement);
             if (result.Success)
             {
                 return Ok(result);

@@ -28,7 +28,7 @@ namespace Business.Concrete
             _fileHelper = fileHelper;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [CacheRemoveAspect("IAdvertisementImageService.Get")]
         public IResult Add(AdvertisementImage advertisementImage, IFormFile file)
         {

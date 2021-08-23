@@ -1,6 +1,7 @@
 ﻿using Business.concrete;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.Concrete.Estate.Home;
 using System;
 
 namespace CUI
@@ -9,7 +10,8 @@ namespace CUI
     {
         static void Main(string[] args)
         {
-            CityTest();
+            //CityTest();
+            
         }
 
         private static void CityTest()

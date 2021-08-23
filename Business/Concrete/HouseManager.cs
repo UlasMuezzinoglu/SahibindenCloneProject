@@ -3,6 +3,7 @@ using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,11 @@ namespace Business.Concrete
         public IDataResult<House> GetByUserId(int userId)
         {
             return new SuccessDataResult<House>(_houseDal.Get(ho => ho.UserId == userId), Messages.HousesListedByUserId);
+        }
+
+        public IDataResult<List<HouseAdvertisementDetailDto>> GetHouseAdvertisementDetailDto()
+        {
+            return new SuccessDataResult<List<HouseAdvertisementDetailDto>>(_houseDal.GetHouseAdvertisementDetails(), Messages.HouseAdvertisementListedDetailDto);
         }
 
         public IResult Update(House house)

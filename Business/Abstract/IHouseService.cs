@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Collections.Generic;
 
 namespace Business.Abstract
@@ -13,6 +14,9 @@ namespace Business.Abstract
         IResult Add(House house);
         IResult Delete(House house);
         IResult Update(House house);
+
+        IDataResult<List<HouseAdvertisementDetailDto>> GetHouseAdvertisementDetailDto();
+
 
     }
 }

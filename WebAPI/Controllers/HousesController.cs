@@ -33,6 +33,20 @@ namespace WebAPI.Controllers
             return BadRequest(result);
             //return Unauthorized(result);
         }
+        [HttpGet("getallwithdto")]
+        public IActionResult GetWithDto()
+        {
+            var result = _houseService.GetHouseAdvertisementDetailDto();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+
+            //return NotFound(result);
+            return BadRequest(result);
+            //return Unauthorized(result);
+        }
         [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {

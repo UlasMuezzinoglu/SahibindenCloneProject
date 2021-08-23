@@ -52,6 +52,7 @@ namespace Business.Constraints
         public static string HouseDeleted = "Emlak İlanı Başarı ile Silindi";
         public static string HouseCantDeledet = "Emlak İlanı Silinemedi... Böyle Birşey Artık Olmayabilir.";
         public static string HousesListed = "Emlak İlanı Başarı ile Listelendi";
+        public static string HouseAdvertisementListedDetailDto = "Emlak İlanı Başarı ile Getirildi";
         public static string HousesListedById = "Emlak İlanı Id ye Göre Başarı ile Listelendi";
         public static string HousesListedByUserId = "Emlak İlanı Kullanıcıya Göre Başarı ile Listelendi";
         public static string HouseUpdated = "Emlak İlanı Başarı ile Güncellendi";
@@ -66,5 +67,6 @@ namespace Business.Constraints
         public static string AdvertisementImagesListed = "İlan Resimleri Başarı ile Listelendi";
         public static string AdvertisementImageUpdated = "İlan Resimi Başarı ile Güncellendi";
         public static string AdvertisementImageCantUpdated = "İlan Resimi Güncellenemedi... Böyle Birşey Artık Olmayabilir";
+
     }
 }

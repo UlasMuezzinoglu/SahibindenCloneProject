@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -18,6 +19,7 @@ namespace Business.concrete
             _cityDal = cityDal;
         }
 
+        [SecuredOperation("admin")]
         public IResult Add(City city)
         {
             _cityDal.Add(city);

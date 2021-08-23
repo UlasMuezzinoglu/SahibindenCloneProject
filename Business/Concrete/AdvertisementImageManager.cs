@@ -72,8 +72,13 @@ namespace Business.Concrete
 
         public IDataResult<List<AdvertisementImage>> GetByAdvertisementId(int advertisementId)
         {
-            // unutma default resim features'i getir
-            return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(c => c.AdvertisementId == advertisementId));
+            var result = BusinessRules.Run(ShowDefaultImage(advertisementId));
+            if (result == null)
+            {
+                return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(c => c.AdvertisementId == advertisementId));
+            }
+            return new ErrorDataResult<List<AdvertisementImage>>("Hata");
+
         }
 
         public IDataResult<AdvertisementImage> GetById(int id)
@@ -108,6 +113,29 @@ namespace Business.Concrete
             }
 
             return new SuccessResult();
+
+        }
+        private IResult ShowDefaultImage(int advertisementId)
+        {
+
+
+            try
+            {
+                string path = @"\images\default.png";
+                var result = _advertisementDal.GetAll(c => c.AdvertisementId == advertisementId).Any();
+                if (result)
+                {
+                    List<AdvertisementImage> advertisementImage = new List<AdvertisementImage>();
+                    advertisementImage.Add(new AdvertisementImage { AdvertisementId = advertisementId, Date = DateTime.Now, ImagePath = path });
+                    return new SuccessDataResult<List<AdvertisementImage>>(advertisementImage);
+                }
+            }
+            catch (Exception)
+            {
+
+                return new ErrorDataResult<List<AdvertisementImage>>("Hata");
+            }
+            return new SuccessDataResult<List<AdvertisementImage>>(_advertisementDal.GetAll(c => c.AdvertisementId == advertisementId).ToList());
 
         }
     }

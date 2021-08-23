@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -22,7 +23,7 @@ namespace Business.Concrete
         public IResult Add(FromWho fromWho)
         {
             _fromWhoDal.Add(fromWho);
-            return new SuccessResult("Kimden Tipi Eklendi");
+            return new SuccessResult(Messages.FromWhoAdded);
         }
 
         public IResult Delete(FromWho fromWho)
@@ -30,18 +31,18 @@ namespace Business.Concrete
             try
             {
                 _fromWhoDal.Delete(fromWho);
-                return new SuccessResult("Kimden Tipi Silindi");
+                return new SuccessResult(Messages.FromWhoDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Kimden Tipi Silinemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.FromWhoCantDeledet);
             }
         }
 
         public IDataResult<List<FromWho>> GetAll()
         {
-            return new SuccessDataResult<List<FromWho>>(_fromWhoDal.GetAll(),"Kimden Tipi Listelendi");
+            return new SuccessDataResult<List<FromWho>>(_fromWhoDal.GetAll(),Messages.FromWhosListed);
         }
 
         public IResult Update(FromWho fromWho)
@@ -49,12 +50,12 @@ namespace Business.Concrete
             try
             {
                 _fromWhoDal.Update(fromWho);
-                return new SuccessResult("Kimden Tipi Güncellendi");
+                return new SuccessResult(Messages.FromWhoUpdated);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Kimden Tipi Güncellenemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.FromWhoCantUpdated);
             }
         }
     }

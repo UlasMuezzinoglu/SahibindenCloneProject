@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -20,7 +21,7 @@ namespace Business.concrete
         public IResult Add(DeedType deedType)
         {
             _deedTypeDal.Add(deedType);
-            return new SuccessResult("Tapu Tipi Eklendi");
+            return new SuccessResult(Messages.DeedTypeAdded);
         }
 
         public IResult Delete(DeedType deedType)
@@ -28,18 +29,18 @@ namespace Business.concrete
             try
             {
                 _deedTypeDal.Delete(deedType);
-                return new SuccessResult("Tapu Tipi Silindi");
+                return new SuccessResult(Messages.DeedTypeDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Tapu Tipi Silinemedi");
+                return new ErrorResult(Messages.DeedTypeCantDeledet);
             }
         }
 
         public IDataResult<List<DeedType>> GetAll()
         {
-            return new SuccessDataResult<List<DeedType>>(_deedTypeDal.GetAll(), "Tapu Tipleri Listelendi");
+            return new SuccessDataResult<List<DeedType>>(_deedTypeDal.GetAll(), Messages.DeedTypesListed);
 
         }
 
@@ -48,11 +49,11 @@ namespace Business.concrete
             try
             {
                 _deedTypeDal.Update(deedType);
-                return new SuccessResult("Tapu Tipi Eklendi");
+                return new SuccessResult(Messages.DeedTypeUpdated);
             }
             catch (Exception)
             {
-                return new ErrorResult("Tapu Tipi Güncellenemedi... Böyle Birşey Olmayabilir");
+                return new ErrorResult(Messages.DeedTypeCantUpdated);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -22,7 +23,7 @@ namespace Business.Concrete
         public IResult Add(House house)
         {
             _houseDal.Add(house);
-            return new SuccessResult("Konut İlanı Eklendi");
+            return new SuccessResult(Messages.HouseAdded);
         }
 
         public IResult Delete(House house)
@@ -30,28 +31,28 @@ namespace Business.Concrete
             try
             {
                 _houseDal.Delete(house);
-                return new SuccessResult("Konut İlanı Silindi");
+                return new SuccessResult(Messages.HouseDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Konut İlanı Silinemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HouseCantDeledet);
             }
         }
 
         public IDataResult<List<House>> GetAll()
         {
-            return new SuccessDataResult<List<House>>(_houseDal.GetAll(),"Konut İlanları Listelendi");
+            return new SuccessDataResult<List<House>>(_houseDal.GetAll(),Messages.HousesListed);
         }
 
         public IDataResult<House> GetById(int id)
         {
-            return new SuccessDataResult<House>(_houseDal.Get(ho => ho.Id == id), "Konut İlanları Listelendi");
+            return new SuccessDataResult<House>(_houseDal.Get(ho => ho.Id == id), Messages.HousesListedById);
         }
 
         public IDataResult<House> GetByUserId(int userId)
         {
-            return new SuccessDataResult<House>(_houseDal.Get(ho => ho.UserId == userId), "Konut İlanları Listelendi");
+            return new SuccessDataResult<House>(_houseDal.Get(ho => ho.UserId == userId), Messages.HousesListedByUserId);
         }
 
         public IResult Update(House house)
@@ -59,12 +60,12 @@ namespace Business.Concrete
             try
             {
                 _houseDal.Update(house);
-                return new SuccessResult("Konut İlanı Silindi");
+                return new SuccessResult(Messages.HouseUpdated);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Konut İlanı Silinemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HouseCantUpdated);
             }
         }
     }

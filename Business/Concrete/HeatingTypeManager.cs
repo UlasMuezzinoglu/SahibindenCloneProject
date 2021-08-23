@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -22,7 +23,7 @@ namespace Business.Concrete
         public IResult Add(HeatingType heatingType)
         {
             _heatingTypeDal.Add(heatingType);
-            return new SuccessResult("Isıtma Tipi Eklendi");
+            return new SuccessResult(Messages.HeatingTypeAdded);
         }
 
         public IResult Delete(HeatingType heatingType)
@@ -30,18 +31,18 @@ namespace Business.Concrete
             try
             {
                 _heatingTypeDal.Delete(heatingType);
-                return new SuccessResult("Isıtma Tipi Silindi");
+                return new SuccessResult(Messages.HeatingTypeDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Isıtma Tipi Silinemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HeatingTypeCantDeledet);
             }
         }
 
         public IDataResult<List<HeatingType>> GetAll()
         {
-            return new SuccessDataResult<List<HeatingType>>(_heatingTypeDal.GetAll(), "Isıtma Tipi Listelendi");
+            return new SuccessDataResult<List<HeatingType>>(_heatingTypeDal.GetAll(), Messages.HeatingTypesListed);
         }
 
         public IResult Update(HeatingType heatingType)
@@ -49,12 +50,12 @@ namespace Business.Concrete
             try
             {
                 _heatingTypeDal.Update(heatingType);
-                return new SuccessResult("Isıtma Tipi Güncellendi");
+                return new SuccessResult(Messages.HeatingTypeUpdated);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Isıtma Tipi Güncellenemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HeatingTypeCantUpdated);
             }
         }
     }

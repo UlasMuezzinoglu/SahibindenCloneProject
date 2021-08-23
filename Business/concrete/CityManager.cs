@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -23,12 +24,12 @@ namespace Business.concrete
         public IResult Add(City city)
         {
             _cityDal.Add(city);
-            return new SuccessResult("Şehir Eklendi");
+            return new SuccessResult(Messages.CityAdded);
         }
 
         public IDataResult<List<City>> GetAll()
         {
-            return new SuccessDataResult<List<City>>(_cityDal.GetAll(), "Şehirler Listelendi");
+            return new SuccessDataResult<List<City>>(_cityDal.GetAll(), Messages.CitiesListed);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constraints;
 using Core.Utilities.Results;
 using DataAccess.Abstact;
 using Entities.Concrete;
@@ -22,7 +23,7 @@ namespace Business.Concrete
         public IResult Add(HouseType houseType)
         {
             _houseTypeDal.Add(houseType);
-            return new SuccessResult("Ev Tipi Eklendi");
+            return new SuccessResult(Messages.HouseTypeAdded);
         }
 
         public IResult Delete(HouseType houseType)
@@ -30,18 +31,18 @@ namespace Business.Concrete
             try
             {
                 _houseTypeDal.Delete(houseType);
-                return new SuccessResult("Ev Tipi Silindi");
+                return new SuccessResult(Messages.HouseTypeDeleted);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Ev Tipi Silinemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HouseTypeCantDeledet);
             }
         }
 
         public IDataResult<List<HouseType>> GetAll()
         {
-            return new SuccessDataResult<List<HouseType>>(_houseTypeDal.GetAll(),"Ev Tipleri Listelendi");
+            return new SuccessDataResult<List<HouseType>>(_houseTypeDal.GetAll(),Messages.HouseTypesListed);
         }
 
         public IResult Update(HouseType houseType)
@@ -49,12 +50,12 @@ namespace Business.Concrete
             try
             {
                 _houseTypeDal.Update(houseType);
-                return new SuccessResult("Ev Tipi Güncellendi");
+                return new SuccessResult(Messages.HouseTypeUpdated);
             }
             catch (Exception)
             {
 
-                return new ErrorResult("Ev Tipi Güncellenemedi... böyle birşey artık olmayabilir");
+                return new ErrorResult(Messages.HouseTypeCantUpdated);
             }
         }
     }

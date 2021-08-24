@@ -1,14 +1,18 @@
 ﻿using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
+using Business.Abstract.Estate;
 using Business.concrete;
 using Business.Concrete;
+using Business.Concrete.Estate;
 using Castle.DynamicProxy;
 using Core.Utilities.Helpers;
 using Core.Utilities.Interceptors;
 using Core.Utilities.Security.JWT;
 using DataAccess.Abstact;
+using DataAccess.Abstact.Estate;
 using DataAccess.Concrete.EntityFramework;
+using DataAccess.Concrete.EntityFramework.Estate;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +47,12 @@ namespace Business.DependencyResolvers.Autofac
             //For HouseAdvertisement
             builder.RegisterType<HouseAdvertisementManager>().As<IHouseAdvertisementService>();
             builder.RegisterType<EfHouseAdvertisementDal>().As<IHouseAdvertisementDal>();
+            //For NumberOfRoom
+            builder.RegisterType<NumberOfRoomManager>().As<INumberOfRoomService>();
+            builder.RegisterType<EfNumberOfRoomDal>().As<INumberOfRoomDal>();
+            //For BuildingAge
+            builder.RegisterType<BuildingAgeManager>().As<IBuildingAgeService>();
+            builder.RegisterType<EfBuildingAgeDal>().As<IBuildingAgeDal>();
 
             //For AdvertisementImage
             builder.RegisterType<AdvertisementImageManager>().As<IAdvertisementImageService>();

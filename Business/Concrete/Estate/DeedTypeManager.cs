@@ -20,7 +20,7 @@ namespace Business.concrete
             _deedTypeDal = deedTypeDal;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [CacheRemoveAspect("IDeedTypeService.Get")]
         public IResult Add(DeedType deedType)
         {

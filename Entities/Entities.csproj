@@ -11,6 +11,7 @@
   <ItemGroup>
     <Folder Include="Concrete\Estate\Land\" />
     <Folder Include="Concrete\Estate\Build\" />
+    <Folder Include="Concrete\Estate\Workplace\" />
   </ItemGroup>
 
 </Project>

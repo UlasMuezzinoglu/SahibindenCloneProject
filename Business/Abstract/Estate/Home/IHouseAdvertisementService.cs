@@ -18,6 +18,7 @@ namespace Business.Abstract
         IResult Add(HouseAdvertisement houseAdvertisement);
         IResult Delete(HouseAdvertisement houseAdvertisement);
         IResult Update(HouseAdvertisement houseAdvertisement);
+        IResult UpdateStatus(int id, bool status);
 
         IDataResult<List<HouseAdvertisementDetailDto>> GetHouseAdvertisementDetailDto();
 

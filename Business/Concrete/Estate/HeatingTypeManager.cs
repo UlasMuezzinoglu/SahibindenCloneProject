@@ -22,7 +22,7 @@ namespace Business.Concrete
             _heatingTypeDal = heatingTypeDal;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [CacheRemoveAspect("IHeatingTypeService.Get")]
         public IResult Add(HeatingType heatingType)
         {

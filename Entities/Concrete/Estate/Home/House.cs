@@ -9,18 +9,17 @@ namespace Entities.Concrete.Estate
 {
     public class House : Advertisement
     {
-        public int UserId { get; set; } // ilan sahibi kim ?
-        public int CityId { get; set; } // şehir id // tablo aç unutma
+        
         public int HeatingTypeId { get; set; } // ısıtma tipi merkezi mi falan // tablo aç unutma
         public int DeedStatusId { get; set; } // tapu durumu id // tablo aç unutma
         public int FromWhoId { get; set; } // kimden id // tablo aç unutma
         public int HouseTypeId { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
-        public int HomeTypeId { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
+        public int HomeTypeId { get; set; } //villa yazlık yalı daire mi falan // tablo aç unutma
 
         public int GrossSquareMeter { get; set; } // brüt metrekare
         public int NetSquareMeter { get; set; } // net metrekare
-        public string NumberOfRooms { get; set; } // oda sayısı
-        public string BuildingAge { get; set; } // bina yaşı
+        public int NumberOfRoomsId { get; set; } // oda sayısı
+        public int BuildingAgeId { get; set; } // bina yaşı //şu an düzenliyorum
         public int NumberOfFloor { get; set; } // kat sayısı
         public int FloorLocation { get; set; } // kaçıncı kat
         public int NumberOfShower { get; set; } // banyo sayısı

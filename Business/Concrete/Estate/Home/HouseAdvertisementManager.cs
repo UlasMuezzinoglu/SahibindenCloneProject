@@ -26,6 +26,7 @@ namespace Business.Concrete
         public IResult Add(HouseAdvertisement houseAdvertisement)
         {
             houseAdvertisement.CreatedTime = DateTime.Now;
+            houseAdvertisement.Status = false;
             _houseAdvertisementDal.Add(houseAdvertisement);
             return new SuccessResult(Messages.HouseAdvertisementAdded);
         }
@@ -46,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<HouseAdvertisement>> GetAll()
         {
-            return new SuccessDataResult<List<HouseAdvertisement>>(_houseAdvertisementDal.GetAll(), Messages.HouseAdvertisementsListed);
+            return new SuccessDataResult<List<HouseAdvertisement>>(_houseAdvertisementDal.GetAll(x => x.Status==true), Messages.HouseAdvertisementsListed);
         }
 
         public IDataResult<HouseAdvertisement> GetById(int id)
@@ -76,6 +77,25 @@ namespace Business.Concrete
 
                 return new ErrorResult(Messages.HouseAdvertisementCantUpdated);
             }
+        }
+        public IResult UpdateStatus(int id,bool status)
+        {
+            try
+            {
+                HouseAdvertisement houseAdvertisement;
+                houseAdvertisement = _houseAdvertisementDal.Get(x => x.Id == id);
+                houseAdvertisement.Status = status;
+                _houseAdvertisementDal.Update(houseAdvertisement);
+                return new SuccessResult(Messages.HouseAdvertisementUpdated);
+
+            }
+            catch (Exception)
+            {
+
+                return new ErrorResult(Messages.HouseAdvertisementCantUpdated);
+            }
+            
+
         }
     }
 }

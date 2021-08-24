@@ -99,6 +99,16 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("updatehousestatus")]
+        public IActionResult UpdateStatus(int id,bool status)
+        {
+            var result = _houseAdvertisementService.UpdateStatus(id, status);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
         [HttpPost("deletehouse")]
         public IActionResult Delete(HouseAdvertisement houseAdvertisement)
         {

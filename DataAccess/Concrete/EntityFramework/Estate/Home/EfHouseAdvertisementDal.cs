@@ -31,7 +31,11 @@ namespace DataAccess.Concrete.EntityFramework
                              on house.DeedStatusId equals dests.Id
                              join cty in context.Cities
                              on house.CityId equals cty.Id
-                             
+                             join nbfrm in context.NumberOfRooms
+                             on house.NumberOfRoomsId equals nbfrm.Id
+                             join bldage in context.BuildingAges
+                             on house.BuildingAgeId equals bldage.Id
+                             where house.Status == true
                              select new HouseAdvertisementDetailDto
                              {
                                  Id = house.Id,
@@ -50,8 +54,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  HomeTypeName = xy.Name,
                                  GrossSquareMeter = house.GrossSquareMeter,
                                  NetSquareMeter = house.NetSquareMeter,
-                                 NumberOfRooms = house.NumberOfRooms,
-                                 BuildingAge = house.BuildingAge,
+                                 NumberOfRooms = nbfrm.NumberOfRoomName,
+                                 BuildingAge = bldage.BuildingAgeName,
                                  NumberOfFloor = house.NumberOfFloor,
                                  FloorLocation = house.FloorLocation,
                                  NumberOfShower = house.NumberOfShower,
@@ -124,12 +128,9 @@ namespace DataAccess.Concrete.EntityFramework
                                  ThermalInsulation = house.ThermalInsulation,
                                  ThiefAlarm = house.ThiefAlarm,
                                  Wallpaper = house.Wallpaper,
-                                 West = house.West
-                               
+                                 West = house.West,
+                                 Status = house.Status
                              };
-
-
-
                 //return result.ToList();
                 var results = result.ToList();
                 foreach (var item in results)
@@ -139,6 +140,7 @@ namespace DataAccess.Concrete.EntityFramework
                         item.ImagePath = "/images/default.png";
                     }
                 }
+                
                 return results;
             }
         }

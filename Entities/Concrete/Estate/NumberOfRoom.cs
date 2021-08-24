@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Concrete.Estate
 {
-    public class HouseType :IEntity
+    public class NumberOfRoom :IEntity
     {
         public int Id { get; set; }
-        public string HouseTypeName { get; set; }  //satılık mı kiralık mı falan
+        public string NumberOfRoomName { get; set; }
     }
 }

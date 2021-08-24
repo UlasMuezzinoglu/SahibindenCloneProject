@@ -21,6 +21,7 @@ namespace Entities.DTOs
         public string FromWhoName { get; set; } // kimden id // tablo aç unutma
         public string HouseTypeName { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
         public string HomeTypeName { get; set; } //satılık mı kiralık mı devren satılık mı falan // tablo aç unutma
+        
 
         public string ImagePath { get; set; }
         public int GrossSquareMeter { get; set; } // brüt metrekare
@@ -110,6 +111,6 @@ namespace Entities.DTOs
         public bool CityCenter { get; set; }
         public bool FiremanStation { get; set; }
         //
-
+        
     }
 }

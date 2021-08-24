@@ -20,4 +20,14 @@
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
 	</ItemGroup>
+
+
+	<ItemGroup>
+	  <Folder Include="Abstract\Estate\Build\" />
+	  <Folder Include="Abstract\Estate\Land\" />
+	  <Folder Include="Abstract\Estate\Workplace\" />
+	  <Folder Include="Concrete\Estate\Land\" />
+	  <Folder Include="Concrete\Estate\Workplace\" />
+	  <Folder Include="Concrete\Estate\Build\" />
+	</ItemGroup>
 </Project>

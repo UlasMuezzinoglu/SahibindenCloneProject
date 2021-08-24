@@ -11,5 +11,14 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Entities\Entities.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Abstact\Estate\Build\" />
+	  <Folder Include="Abstact\Estate\Workplace\" />
+	  <Folder Include="Abstact\Estate\Land\" />
+	  <Folder Include="Concrete\EntityFramework\Estate\Land\" />
+	  <Folder Include="Concrete\EntityFramework\Estate\Workplace\" />
+	  <Folder Include="Concrete\EntityFramework\Estate\Build\" />
+	</ItemGroup>
 	
 </Project>

@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\Estate\Build\" />
+    <Folder Include="Controllers\Estate\Land\" />
+    <Folder Include="Controllers\Estate\Workplace\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

@@ -79,5 +79,9 @@ namespace Business.Constraints
         public static string HouseAdvertisementListed = "Konut İlanı Başarı ile Listelendi";
         public static string HouseAdvertisementUpdated = "Konut İlanları Başarı ile Güncellendi";
         public static string HouseAdvertisementCantUpdated = "Güncellenemedi... Böyle Birşey Artık Olmayabilir.";
+        // for NumberOfRoom Manager Messages
+        public static string NumberOfRoomsListed = "Oda Sayıları Listelendi";
+        // for BuildingAge Manager Messages
+        public static string BuildingAgesListed = "Yapı Yaşları Listelendi";
     }
 }

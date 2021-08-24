@@ -22,7 +22,7 @@ namespace Business.Concrete
             _houseTypeDal = houseTypeDal;
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [CacheRemoveAspect("IHouseTypeService.Get")]
         public IResult Add(HouseType houseType)
         {

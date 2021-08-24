@@ -22,11 +22,18 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<AdvertisementImage> AdvertisementImages { get; set; }
         public DbSet<DeedType> DeedTypes { get; set; }
         public DbSet<FromWho> FromWhos { get; set; }
+        public DbSet<NumberOfRoom> NumberOfRooms { get; set; }
+
+
+        
+        public DbSet<BuildingAge> BuildingAges { get; set; }
+
         public DbSet<HeatingType> HeatingTypes { get; set; }
         public DbSet<HouseType> HouseTypes { get; set; }
         public DbSet<HomeType> HomeTypes { get; set; }
         public DbSet<HouseAdvertisement> Houses { get; set; }
 
+        
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
